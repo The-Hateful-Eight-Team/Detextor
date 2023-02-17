@@ -21,6 +21,7 @@ import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraManager mCameraManager = null;
     CameraService[] myCameras = null;
     private TextureView mImageView = null;
+    private TextView tapTextView = null;
     private final int CAMERA1 = 0;
 
     @Override
@@ -62,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         mImageView = findViewById(R.id.textureView);
+        tapTextView = findViewById(R.id.textView);
         mImageView.setOnClickListener(v -> {
             if (myCameras[CAMERA1] != null) {
                 if (!myCameras[CAMERA1].isOpen()) myCameras[CAMERA1].openCamera();
+                tapTextView.setVisibility(View.INVISIBLE);
             }
         });
     }
